@@ -105,3 +105,78 @@ where 2 >= (select count(DISTINCT salary)
 from emppos e2
 where e1.salary <= e2.salary)
 ORDER by e1.salary desc;
+
+
+
+
+select *
+from employee
+where empId <= (select count(empid)/2
+from employee)
+
+select *
+from employee
+where id <= (select count(empId)/2
+from employee);
+
+
+select empPosition, sum(salary)
+from employee
+group by employeePos;
+
+SELECT department, sum(empId) as numOfEmployee
+from employee
+group by department
+having numOfEmployee < 2;
+
+select *
+from employee
+where empId = (select min(empId)
+FROM employee);
+
+
+select *
+from employee
+where empId = (select max(empId)
+FROM employee);
+
+select top 1
+    salary
+from ( select top 3
+        salary
+    from employee
+    order by salary desc) as emp
+ORDER by salary asc;
+
+
+
+CREATE TABLE Students
+(
+    Name VARCHAR(255),
+    Age int,
+    id int PRIMARY key,
+);
+
+insert into students
+    (Name,Age,id)
+values
+    ('Sarah', 23, 1),
+    ('Saad', 1, 2)
+
+
+
+Select top 3
+    *
+from employee
+order by id desc;
+
+select e1.salary
+from employee e1
+where 2 = (select count(distinct e2.salary)
+from employee e2
+where e1.salary > e2.salary);
+
+select top 2
+    salary
+from employee
+order by salary desc;
